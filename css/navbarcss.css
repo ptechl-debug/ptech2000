@@ -270,6 +270,14 @@
   border-bottom: 2px solid #176790;
 }
 
+/* ตัวอักษรแทนโลโก้ */
+.logo-text {
+    display: none;              /* ซ่อนบน desktop เพราะมีโลโก้รูป */
+    font-size: 24px;
+    font-weight: bold;
+    color: #0f4f7a;
+}
+
 
 /* Responsive มือถือ */
 @media (max-width: 768px) {
@@ -290,67 +298,93 @@
   color: #0f4f7a;
 }
 
+@media screen and (max-width: 1024px) {
+  /* ลดขนาด logo และ navbar */
+  .my-navbar .logo img {
+    height: 150px;
+    padding-left: 60px;
+    padding-top: 20px;
+  }
+
+  .my-navbar ul li a {
+    font-size: 16px;
+    padding: 8px 15px;
+  }
+}
+
+
+/* Mobile L/S/M (Hamburger) */
 @media screen and (max-width: 768px) {
   .hamburger {
-    display: block;
+    display: block; /* แสดง Hamburger */
+    position: absolute; 
+    top: 50%;              /* กึ่งกลางแนวตั้ง */
+    right: 50px;           /* ชิดขวา */
+    transform: translateY(-50%); /* กึ่งกลางแนวตั้งพอดี */
     z-index: 1001;
-    margin-left: auto;  
-    margin-right: 20px;
   }
-    .navbar {
-    height: 70px;                  /* ลดความสูง */
-    padding: 10px 20px;            /* ลด padding */
+
+     .logo-text {
+        display: block;
+            position: absolute; 
+    top: 50%;              /* กึ่งกลางแนวตั้ง */
+    left: 50px;           /* ชิดขวา */
+    transform: translateY(-50%); /* กึ่งกลางแนวตั้งพอดี */
+    z-index: 1001;
+    }
+  .my-navbar {
+    position: fixed;  /* ติดบน */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;      /* ความสูงมือถือ */
+    padding: 0 12px;
+    background-color: #ffffff;
     border-bottom: 3px solid #176790;
+    z-index: 1000;
+    display: flex;
     justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+  }
+  /* ซ่อน logo บนมือถือ */
+  .my-navbar .logo {
+    display: none;
+  }
+   .top-bar {
+    display: none;
   }
 
-
-  .navbar ul {
+  .my-navbar ul {
     display: none;
     flex-direction: column;
-    background-color: #ffffffe8;
     width: 100%;
+    background-color: #ffffff;
     position: absolute;
     top: 60px;
     left: 0;
     z-index: 1000;
   }
 
-  .navbar ul.open {
+  .my-navbar ul.open {
     display: flex;
-  }
-
-  /* ปิด logo บนมือถือ */
-  .navbar .logo {
-    display: none;
-  }
-    .top-bar {
-    display: none;
   }
 }
 
+/* Mobile XS (มือถือเล็กสุด) */
 @media screen and (max-width: 425px) {
   .navbar {
-    height: 60px;              /* ลดความสูงลงอีก */
-    padding: 8px 12px;         /* ลด padding ด้านข้าง */
-  }
-
-  .navbar ul {
-    top: 55px;                 /* ปรับตำแหน่ง dropdown ให้พอดีกับ navbar ที่เตี้ยลง */
-    gap: 3px;                  /* ลดช่องว่างระหว่างเมนู */
+    height: 60px;
+    padding: 8px 12px;
   }
 
   .navbar ul li a {
-    font-size: 14px;           /* ย่อขนาดตัวอักษรในเมนู */
+    font-size: 14px;
     padding: 8px 10px;
   }
 
   .hamburger {
-    font-size: 24px;           /* ย่อขนาดไอคอน hamburger */
+    font-size: 24px;
     margin-right: 12px;
-  }
-
-  .top-bar {
-    display: none;             /* ซ่อนแถบด้านบนเหมือนเดิม */
   }
 }
