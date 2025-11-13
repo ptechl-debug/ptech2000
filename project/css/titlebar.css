@@ -1,0 +1,46 @@
+.accordion {
+  width: 100%;   
+  overflow: hidden;
+  background-color: #dfdfdf;
+  cursor: pointer;
+}
+
+/* แค่ตัวแรกห่างจากด้านบน */
+
+.accordion-header {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  background-color: #dfdfdf;
+  padding-left: 80px;
+    border-top: 0.5px solid #252525;    /* เส้นด้านบน */
+  border-bottom: 0.5px solid #252525;
+}
+
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  background-color: rgba(0,0,0,0.05); /* overlay เล็ก ๆ */
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.accordion-body p {
+  margin: 15px 0;
+}
+
+.accordion.active .accordion-body {
+  max-height: 500px; /* ปรับสูงสุดตามเนื้อหา */
+  padding: 15px 20px;
+}
+
+.accordion-icon {
+  transition: transform 0.3s ease;
+}
+
+.accordion.active .accordion-icon {
+  transform: rotate(45deg);
+}

@@ -1,0 +1,618 @@
+/* Reset margin/padding */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    font-family: 'Arial', sans-serif; 
+    
+}
+/* fade-out และ fade-in body */
+/* fade-out และ fade-in */
+body, #main-content {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+body.fade-out, #main-content.fade-out {
+  opacity: 0;
+}
+
+body {
+  animation: fadeIn 0.4s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+/* Hero section */
+.hero {
+    width: 100%;
+  height: 80vh; 
+    background-image: url('../image/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 1;
+    box-shadow: #000;
+    transition: background-image 1s ease-in-out;
+}
+.hero button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.4);
+  color: #000000;
+  border: none;
+  padding: 10px 20px;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 2;
+
+}
+
+.hero-prev { left: 20px; }
+.hero-next { right: 20px; }
+
+
+
+/* Content section (Navbar + Main) */
+.content {
+
+    z-index: 2;
+    padding-top: 90px; /* ช่องว่างเท่าความสูง navbar */
+  position: relative; /* สำคัญมาก ให้วิดีโออยู่ด้านหลัง */
+  min-height: 100vh;
+  overflow: hidden;   /* ซ่อนส่วนเกินของวิดีโอ */
+  background-color: rgba(238, 238, 238, 0.804); /* สีจางทับวิดีโอ */
+
+}
+
+
+.content.scrolled {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  box-shadow: 0 -6px 20px rgba(0,0,0,0.2);
+  transform: translateY(-6px); /* ขยับขึ้นนิดนึง */
+}
+
+/* Scroll effect: เลื่อน content ขึ้นทับ Hero */
+.content.overlay {
+    transform: translateY(-40vh);
+    padding-top: 70px; /* เพิ่มช่องว่างเท่าความสูง navbar */
+}
+/* Navbar fixed */
+
+/* Hero ขยับขึ้นเมื่อ scroll */
+.hero.scrolled {
+    position: relative;
+    top: -40vh; /* เลื่อน Hero ขึ้นไปด้านบน */
+    transition: top 0.5s ease;
+}
+.bg-video {
+  position: absolute; /* อยู่ใน #content */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* ด้านหลังเนื้อหา */
+  opacity: 0.10; /* ทำให้จาง */
+}
+
+
+/* Container เนื้อหา */ห
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    color: #000;
+}
+
+
+/* Responsive มือถือ */
+@media (max-width: 768px) {
+    .hero img {
+        width: 90%;
+        height: auto;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* Grid container */
+.grid-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2 คอลัมน์เท่ากัน */
+    gap: 20px;
+    align-items: start;
+  max-width: 1200px; /* ความกว้างของเนื้อหา */
+  margin: 0 auto;    /* จัดกลางแนวนอน */
+  padding: 20px;     /* เผื่อระยะขอบซ้ายขวา */
+  box-sizing: border-box;
+  
+
+}
+/* ซ้าย: carousel scroll แนวนอน */
+.left-carousel {
+    width: 100%;
+    max-width: 700px;          /* กำหนดขนาด carousel */
+    position: relative;
+}
+
+.carousel-wrapper {
+    width: 100%;
+    aspect-ratio: 4 / 3;       /* กำหนดอัตราส่วน */
+    border: 2px solid #ccc;
+    overflow: hidden;
+    position: relative;
+    background-color: #f0f0f0;
+        box-shadow: 10px 15px 10px rgba(1, 1, 1, 0.269);
+}
+.carousel-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.carousel-images img.active {
+  opacity: 1;
+}
+.card-row {
+  display: flex;
+  flex-wrap: wrap;       /* เลื่อนลงบรรทัดใหม่เมื่อหน้าจอเล็ก */
+  gap: 20px;             /* ระยะห่างระหว่าง Card */
+  justify-content: center; /* จัดให้อยู่กลางแถว */
+  margin: 20px 0;
+}
+
+.card-row .card {
+  flex: 1 1 18rem;       /* ให้ Card ขยายตัวได้ แต่มีขนาดเริ่มต้น 18rem */
+  max-width: 18rem;      /* จำกัดความกว้างสูงสุด */
+}
+
+
+
+/* ปุ่มเลื่อนซ้ายขวา */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+
+/* ขวา: ลิงก์ */
+
+.right-links {
+    width: 100%;
+    max-width: 400px;          /* กำหนดขนาด carousel */
+    position: relative;
+    margin-top: 150px;
+    margin-bottom: 20px;
+    
+    
+    
+
+}
+.right-links h1 {
+  margin-bottom: 10px;
+  color: #000000;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* เมื่อชี้ */
+
+.right-text { /* เนื้อหาจริง */
+  position: relative;
+  max-width: 1200px;
+  padding: 28px 24px;
+  background: white;
+  border-radius: 28px;
+  z-index: 2;
+  box-sizing: border-box;
+  overflow: visible;
+  margin-left: 0px;
+  margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+.right-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.right-links ul li a  {
+    display: block;
+    padding: 8px 0;
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 16px;
+      transition: transform 0.3s ease;
+}
+
+.right-links ul li a:hover {
+    color: #176790;
+      transform: scale(1.1); /* ขยายขึ้น 10% */
+}
+.carousel-caption p {
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+    color: #ffffff; /* สีเด่น */
+    padding-top: 20px;
+    
+}
+
+.content2 {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+    min-height: 100vh; 
+      background: #f4fbff; /* โปร่ง */
+  backdrop-filter: blur(6px);        /* ฟิล์มเบลอแบบ glass effect */
+  border-radius: 8px;                /* โค้งน้อยๆ */
+  box-shadow: none;  
+  
+}
+
+.grid-content2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* ซ้าย-ขวา */
+    gap: 20px;
+    align-items: start;
+    min-height: 80vh;
+    
+}
+
+.left_text_about {
+    width: 60%;
+    max-width: 700px;          /* กำหนดขนาด carousel */
+    position: relative;
+    margin: 5px auto 0 auto;
+    margin-right: 50px;
+      background: #ffffffda;
+  padding: 30px;
+  border-radius: 20px;
+    box-shadow: 10PX 10px 15px 10px rgba(1, 1, 1, 0.269);
+  /* ขยับลงมา 40px จากบน */
+}
+
+.left_text_about h1{
+    display: inline-block; 
+    padding-bottom: 5px;  
+}
+
+
+
+.right-imag_about {
+  flex: 1;
+  height: 100vh;
+  background-image: url('../image/show2.jpg');
+  background-size: 50% auto;   /* ลดขนาดรูป 80% ของ div ความสูงปรับอัตโนมัติ */
+  background-position: right;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+}
+
+
+.image-frame {
+  width: 100%;     /* ให้เฟรมเต็มพื้นที่ฝั่งขวา */
+  height: 100vh;   /* ให้เฟรมสูงเท่าหน้าจอ */
+  overflow: hidden;
+  position: relative;
+  
+}
+
+.highlight-img {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 120%;   /* ให้รูปใหญ่กว่าเฟรม */
+  top: 0;
+  object-fit: cover;
+  transition: top 0.1s linear;
+}
+
+.content3 {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+    min-height: 80vh; 
+    padding-top: 60px;
+    width: 100%;
+    background-color: #f5f5f5;
+    text-align: center; /* จัดหัวข้อกลาง */
+}
+
+
+.product-title h1 {
+  margin-bottom: 40px;
+  display: inline-block; 
+  padding-bottom: 5px; 
+}
+
+.grid-content3 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 3 คอลัมน์ */
+  gap: 20px;
+  max-width: 1300px;
+  margin: 0 auto; /* กลางจอ */
+  
+  
+}
+
+.company-info {
+  grid-column: 1 / -1; /* กินเต็ม grid */
+  display: flex;
+  align-items: center;  /* จัดแนวกลางแนวตั้ง */
+  gap: 40px;           /* ช่องว่างระหว่างรูปกับข้อความ */
+  background-color: #e2e2e269;
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  margin-top: 100px;
+  margin-bottom: 80px;
+  max-width: 900px;
+  justify-self: center; 
+      box-shadow: 10px 10px 15px 10px rgba(65, 65, 65, 0.269);
+  
+
+}
+.company-info img {
+  width: 400px;
+  height: 400px;      
+  object-fit: cover;   
+  border-radius: 10px; 
+}
+.company-info .company-text {
+  display: block; 
+}
+
+.company-info .company-text h2 {
+  margin: 0 0 10px 0; /* ห่างจาก p เล็กน้อย */
+  font-size: 1.8rem;
+}
+
+.company-info .company-text p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+
+.card {
+    border: 2px solid #94949458; /* สีกรอบเมื่อชี้เมาส์ */
+  background-color: #e2e2e269;
+  border-radius: 0px;
+  box-shadow: 10px 10px 10px rgba(132, 132, 132, 0.269);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s;
+  cursor: pointer;
+  text-decoration: none; /* เอาเส้นใต้ลิงก์ออก */
+  color: inherit
+  
+}
+.card:hover {
+  border: 2px solid #94949458; /* สีกรอบเมื่อชี้เมาส์ */
+  transform: scale(1.03); /* ขยายเบา ๆ */
+}
+
+.card:hover h3 {
+  text-decoration: underline;
+  text-decoration-color: #D89216; /* สีเส้นใต้ */
+  text-underline-offset: 5px; /* ระยะห่างระหว่างเส้นกับตัวอักษร */
+}
+
+.card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.card h3 {
+  margin: 15px 0 10px 0;
+  color: #2c3d80;
+}
+
+.card p {
+  padding: 0 15px 15px 15px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.content4 {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+    min-height: 35vh; 
+    padding-top: 5px;
+    width: 100%;
+    background-color: #343b49f8;
+    text-align: center; /* จัดหัวข้อกลาง */
+}
+
+.card4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, auto)); /* ขนาดรูปพอดี */
+  justify-content: center; /* จัดกลางทั้งกริด */
+  gap: 100px; /* ระยะห่างระหว่างรูป */
+
+}
+
+.card4 img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 30px;
+
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  
+}
+
+.product-title h4 {
+  color: #ccc;
+  font-size: 28px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
+
+  
+}
+
+
+/* ค่าเริ่มต้น: เส้นหายไป (scaleX(0)) */
+.right-links h1,
+.left_text_about h1,
+.product-title h1,
+.contact-header h1 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.right-links h1::after,
+.left_text_about h1::after,
+.product-title h1::after,
+.contact-header h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: #D89216;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.0s ease;
+}
+
+/* ตอน active: เส้นค่อยๆ โผล่มาจากซ้ายไปขวา */
+.right-links h1.active::after,
+.left_text_about h1.active::after,
+.product-title h1.active::after,
+.contact-header h1.active::after {
+  transform: scaleX(1);
+}
+
+
+
+
+
+
+
+
+/* 🟢 Mobile */
+@media (min-width: 425px) and (max-width: 768px) {
+  html, body {
+    font-size: 12px;
+  }
+
+  .grid-content,
+  ß.grid-content1,
+  .grid-content2,
+  .grid-content3 {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    height: 60vh;
+    background-size: cover;
+  }
+
+  .carousel-wrapper {
+    aspect-ratio: 16 / 9;
+  }
+  .right-links {
+    width: 50%;
+    max-width: 100px;          /* กำหนดขนาด carousel */
+    position: relative;
+    margin-bottom: 20px;
+}
+
+  .left-carousel,
+  .right-links,
+  .left_text_about {
+    max-width: 100%;
+    margin: 0 auto 15px auto;
+    padding: 10px;
+  }
+
+  .right-imag_about {
+    background-attachment: scroll;
+    height: 280px;
+  }
+
+  .card img {
+    height: 180px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+  }
+
+  .right-links h1,
+  .left_text_about h1,
+  .product-title h1 {
+    font-size: 1.4rem;
+  }
+
+  .product-title h4 {
+    font-size: 1.2rem;
+  }
+
+
+  .company-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .company-info img {
+    width: 200px;
+    height: 200px;
+  }
+}

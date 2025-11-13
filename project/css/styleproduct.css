@@ -1,0 +1,244 @@
+    
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    font-family: 'Arial', sans-serif; 
+    
+}
+body, #main-content {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+body.fade-out, #main-content.fade-out {
+  opacity: 0;
+}
+
+body {
+  animation: fadeIn 0.4s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.content {
+    position: relative;
+    z-index: 2;
+    padding-top: 50px; /* ช่องว่างเท่าความสูง navbar */
+    background-color: #efefef;
+    transition: 
+    border-radius 0.4s ease,
+    box-shadow 0.4s ease,
+    transform 0.4s ease;
+}
+
+.content2 {
+    background-color: #efefef;
+}
+.content2 .grid-container {
+  display: grid;
+  grid-template-columns: 1fr; /* คอลัมน์เดียว */
+  grid-gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  padding-bottom: 60px;
+}
+
+
+.page-title {
+    text-align: center;
+    margin: 40px 0 20px 0;
+    font-weight: bold;
+      
+}
+.page-title h1 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.page-title h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: #D89216;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.2s ease; /* ปรับช้า/เร็วได้ */
+}
+
+.page-title.active h1::after {
+  transform: scaleX(1);
+}
+
+
+
+    /* Container ของ Grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+    /* row2 ให้กว้างเต็มเท่ากับ 3 column */
+.grid-container .row2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 คอลัมน์ */
+  grid-gap: 20px;
+  grid-column: 1 / -1; /* ยังขยายเต็ม 3 คอลัมน์ด้านบน */
+}
+    /* การ์ด */
+.card {
+    border-radius: 25px;
+    box-shadow: 10px 15px 10px rgba(1, 1, 1, 0.269);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative; 
+    height: 300px; /* ปรับตามต้องการ */ 
+}
+
+.card-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  color: rgb(255, 255, 255); /* ข้อความเดิม */
+  background: rgba(209, 209, 209, 0.11); /* overlay ขาวโปร่ง */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  transition: opacity 0.3s ease;
+  box-sizing: border-box;
+  z-index: 2;
+
+}
+
+/* overlay ขาว */
+.card-text::before {
+  content: "";
+  position: absolute;
+  bottom: -100%; /* เริ่มซ่อนด้านล่าง */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.391); /* overlay ขาวโปร่ง */
+  transition: bottom 0.4s ease;
+    pointer-events: none;
+  z-index: 1;
+}
+
+/* ข้อความเพิ่มเติม */
+.card-text::after {
+  content: "\f08e  เพิ่มเติม"; /* ← ไอคอน ↗ + ข้อความ */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900; /* solid */
+  position: absolute;
+  bottom: -50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 1.2rem;
+  color: #000000;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7); /* เงาดำนุ่ม ๆ */
+  font-weight: bold;
+  opacity: 0;
+  transition: bottom 0.4s ease, opacity 0.4s ease;
+  z-index: 3;
+  font-size: 25px;
+  pointer-events: auto;
+}
+
+/* hover effect */
+.card:hover .card-text h3,
+.card:hover .card-text p {
+  opacity: 0; /* ซ่อนข้อความเดิม */
+}
+
+.card:hover > .card-text::before {
+  bottom: 0; /* overlay เลื่อนขึ้น */
+}
+
+.card:hover > .card-text::after {
+  bottom: 50%;
+  opacity: 1; /* ขึ้นมาโชว์ข้อความ "เพิ่มเติม" */
+}
+
+/* ให้ทั้งการ์ดชี้แล้วเป็นมือ */
+.card:hover {
+  cursor: pointer;
+}
+
+/* หรือเฉพาะปุ่มเพิ่มเติม */
+.card-text .more-btn {
+  cursor: pointer;
+}
+
+    
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+.card h3 {
+  font-size: 24px;
+  color: #272727;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.235);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 12px;
+text-shadow: 1px 1px 3px rgba(221, 221, 221, 0.5);
+  display: inline-block;
+      box-shadow: 10px 15px 10px rgba(1, 1, 1, 0.269);
+      margin-bottom: -20px;
+
+}
+
+
+.card p {
+    font-size: 0.9rem;
+    color: #000000;
+
+backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.406);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 12px;
+
+
+  display: inline-block;
+}
+
+    @media (max-width: 900px) {
+      .grid-container {
+        grid-template-columns: 1fr; /* แถวเดียวบนมือถือ */
+      }
+
+      .grid-container .row2 {
+        grid-column: auto;
+      }
+    }

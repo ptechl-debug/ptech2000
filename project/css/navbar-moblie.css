@@ -1,0 +1,84 @@
+/* Hamburger แสดงเฉพาะมือถือ */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #0f4f7a;
+  padding: 10px;
+}
+
+/* Media query สำหรับมือถือ */
+@media screen and (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  /* ซ่อนเมนูปกติ */
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #ffffff;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+  }
+
+  .navbar ul li {
+    width: 100%;
+  }
+
+  .navbar ul li a {
+    padding: 15px 20px;
+    color: #fff;
+  }
+    .navbar ul.active {
+    display: flex;
+  }
+
+  /* แสดงปุ่ม hamburger */
+  .hamburger {
+    display: block;
+  }
+
+  /* เปิดเมนูมือถือ */
+  .navbar ul.active {
+    display: flex;
+  }
+    .navbar ul.open {
+    display: flex;
+  }
+
+
+  /* ปรับ dropdown menu สำหรับมือถือ (กดเพื่อเปิด) */
+  .dropdown-menu {
+    position: relative;
+    background-color: #0f4f7a;
+    top: 0;
+    left: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none; /* hover ใช้ไม่ได้บนมือถือ */
+  }
+
+  .dropdown.active .dropdown-menu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dropdown-menu li a {
+    color: white;
+    padding-left: 40px;
+  }
+}
+
+  .navbar .logo {
+    display: none;
+  }

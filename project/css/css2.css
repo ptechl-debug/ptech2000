@@ -1,0 +1,64 @@
+.liquid-glass {
+  position: relative;
+  background: rgba(255, 255, 255, 0.443); /* ลดความเข้มเล็กน้อยให้โปร่งมากขึ้น */
+  border-radius: 10px;
+  padding: 24px 32px;
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(197, 197, 197, 0.554); /* ขอบเด่นขึ้น */
+  overflow: hidden;
+  z-index: 1;
+  color: #333;
+  box-shadow: 10px 15px 40px rgba(1, 1, 1, 0.269);
+}
+
+/* ชั้นเงาเหลวเคลื่อนไหว */
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.25),
+    rgba(180, 220, 255, 0.4)
+  );
+  filter: blur(28px);
+  z-index: -1;
+  opacity: 1;
+  animation: glassWave 8s ease-in-out infinite alternate;
+}
+
+/* แสงสะท้อนเงา */
+.liquid-glass::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  width: 180%;
+  height: 180%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0)
+  );
+  opacity: 0.6;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: glassHighlight 12s ease-in-out infinite alternate;
+}
+
+/* ตัวอย่าง keyframes สำหรับ animation */
+@keyframes glassWave {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(10px, 10px) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes glassHighlight {
+  0% { transform: translate(0,0) rotate(0deg); }
+  50% { transform: translate(15px, 15px) rotate(45deg); }
+  100% { transform: translate(0,0) rotate(0deg); }
+}

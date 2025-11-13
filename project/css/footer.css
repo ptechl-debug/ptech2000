@@ -1,0 +1,22 @@
+/* footer.css */
+#footer {
+  position: fixed;
+  bottom: -60px; /* เริ่มซ่อน */
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  text-align: center;
+  padding: 12px 0;
+  font-size: 14px;
+  color: #444;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  transition: bottom 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+#footer.show {
+  bottom: 0;
+  opacity: 1;
+}

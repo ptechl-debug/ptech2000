@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="css/titlebar.css">
+
+<script>
+    document.querySelectorAll('.accordion').forEach(item => {
+  item.addEventListener('click', () => {
+    item.classList.toggle('active'); // เปิด/ปิด
+
+    // ถ้าต้องการปิดอันอื่นอัตโนมัติ ให้เพิ่ม:
+    // document.querySelectorAll('.accordion').forEach(other => {
+    //   if(other !== item) other.classList.remove('active');
+    // });
+  });
+});
+
+</script>

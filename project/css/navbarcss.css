@@ -1,0 +1,356 @@
+
+
+  
+.top-bar {
+  background-color: #176790;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 150px; /* ซ้าย-ขวาเท่ากัน */
+}
+
+
+.top-bar a {
+  color: white;
+  text-decoration: none;
+}
+
+.top-bar a i {
+  font-size: 20px;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin-left: 12px; /* เว้นเฉพาะไอคอนข้างหลัง */
+}
+
+.top-bar a:first-child i {
+  margin-left: 0; /* ไอคอนแรกไม่ต้องเว้น */
+}
+
+.top-bar a i:hover {
+  transform: scale(1.2);
+}
+
+.my-navbar .logo {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: scale(1);
+  opacity: 1;
+  transform-origin: left center; /* ซ่อนจากตำแหน่งเดิม */
+  display: flex;                /* ป้องกันโดด */
+  align-items: center;
+}
+
+.my-navbar .logo img {
+  height: 250px;
+  display: block;
+  padding-left: 120px;
+  padding-top: 40px;
+}
+
+
+
+/* Navbar fixed */
+.my-navbar.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.my-navbar {
+  display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;  
+    color: white;
+    height: 150px;               
+    display: flex;
+    justify-content: space-between; /* ดันโลโก้ไปซ้าย เมนูไปขวา */   
+    align-items: center;         
+    transition: all 0.3s ease;  /* Smooth transition */
+    border-bottom: 2px solid #176790;  
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15); /* เงาอยู่ตลอด */
+    z-index: 1000;  
+    
+    
+}
+
+/* navbar เล็กตอน scroll */
+.my-navbar.scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;               /* ลดความสูง */
+  justify-content: center;    /* เมนูอยู่กลาง */
+  padding: 0;             /* ลบ padding ซ้ายขวา */
+  background-color: #ffffff;
+  border-bottom: 1.5px solid #deb442f1;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  
+}
+
+/* ซ่อน logo */
+.my-navbar.scrolled .logo {
+  transform: scale(0.5); /* ย่อ logo */
+  opacity: 0;
+}
+
+
+
+/* ซ่อน top-bar */
+.top-bar.hidden {
+  opacity: 0;
+  pointer-events: none; /* ป้องกันการคลิก */
+  transition: opacity 0.3s ease;
+}
+
+/* Hero ขยับขึ้นเมื่อ scroll */
+.hero.scrolled {
+    position: relative;
+    top: -40vh; /* เลื่อน Hero ขึ้นไปด้านบน */
+    transition: top 0.5s ease;
+}
+
+/* Content เลื่อนตาม */
+
+/* Navbar ติดขอบบนเมื่อ scroll */
+
+
+/* Navbar */
+
+/* เมนูใน Navbar */
+.my-navbar ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    
+    margin-right: 120px;
+}
+
+
+.my-navbar ul li a {
+   color: #176790;
+    text-decoration: none;
+    padding: 0 40px;
+    font-size: 18px;
+    font-weight: 500;
+    border-bottom: 3px solid transparent; /* ใส่เส้นใต้ invisible ก่อน */
+    transition: all 0.3s;
+    display: block;
+    padding: 10px 20px;
+    
+}
+
+/* Hover effect */
+.my-navbar ul li a:hover {
+    color: #FFD700;    
+    transition: color 0.3s;
+}
+
+.my-navbar ul li a:hover {
+  background-color: #E6F2FF;   /* พื้นหลังฟ้าอ่อน */
+  color: #176790;   
+}
+
+/* Active menu */
+.my-navbar ul li a.active {
+    color: #D89216;               /* สีส้ม */
+    border-bottom: 2px solid #D89216; /* เส้นใต้ */
+}
+
+
+
+
+.my-navbar ul li {
+  position: relative; /* จำเป็นสำหรับ dropdown */
+}
+
+
+
+/* dropdown menu ซ่อนปกติ */
+.dropdown-menu {
+  display: none; /* ซ่อนก่อน */
+  position: absolute;
+  top: 100%;       /* อยู่ใต้เมนูหลัก */
+  left: 0;
+  background-color: #ffffff;
+  padding: 10px 0;
+  min-width: 200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 10;
+  opacity: 0;          /* ซ่อนให้แน่นอน */
+  visibility: hidden;
+}
+
+/* hover: แสดง dropdown */
+.dropdown:hover .dropdown-menu {
+  display: block;  /* แสดงเฉพาะตอนชี้เม้าส์ */
+  opacity: 1;
+  visibility: visible;
+}
+
+/* แต่ละรายการใน dropdown */
+.dropdown-menu li a {
+  padding: 10px 20px;
+  color: white;
+  display: block;
+}
+
+/* hover effect */
+.dropdown-menu li a:hover {
+  background-color: #E6F5FF;
+  color: black !important;
+}
+
+.dropdown-menu li {
+  border-bottom: 1px solid #ddd; /* เส้นขั้นบรรทัด */
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none; /* เอาเส้นของรายการสุดท้ายออก */
+}
+
+.dropdown-menu li a {
+  color: #000;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f5f5f5; /* พื้นหลังเวลา hover */
+}
+
+
+
+
+
+/* Container เนื้อหา */ห
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    color: #000;
+}
+.my-navbar.top-scroll {
+  background-color: #ffffff;
+  padding: 10px 20px;       /* ลดความสูง */
+}
+
+.my-navbar.top-scroll .logo {
+  transform: scale(0);      /* ซ่อน logo ค่อยๆ เล็กจนหาย */
+}
+
+.my-navbar ul.menu {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.my-navbar ul.menu li a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+}
+
+.my-navbar ul.menu li a:hover {
+  color: #176790;
+  border-bottom: 2px solid #176790;
+}
+
+
+/* Responsive มือถือ */
+@media (max-width: 768px) {
+    .hero img {
+        width: 90%;
+        height: auto;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+.hamburger {
+  display: none;
+  cursor: pointer;
+  font-size: 28px;
+  color: #0f4f7a;
+}
+
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: block;
+    z-index: 1001;
+    margin-left: auto;  
+    margin-right: 20px;
+  }
+    .navbar {
+    height: 70px;                  /* ลดความสูง */
+    padding: 10px 20px;            /* ลด padding */
+    border-bottom: 3px solid #176790;
+    justify-content: space-between;
+  }
+
+
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    background-color: #ffffffe8;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    z-index: 1000;
+  }
+
+  .navbar ul.open {
+    display: flex;
+  }
+
+  /* ปิด logo บนมือถือ */
+  .navbar .logo {
+    display: none;
+  }
+    .top-bar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .navbar {
+    height: 60px;              /* ลดความสูงลงอีก */
+    padding: 8px 12px;         /* ลด padding ด้านข้าง */
+  }
+
+  .navbar ul {
+    top: 55px;                 /* ปรับตำแหน่ง dropdown ให้พอดีกับ navbar ที่เตี้ยลง */
+    gap: 3px;                  /* ลดช่องว่างระหว่างเมนู */
+  }
+
+  .navbar ul li a {
+    font-size: 14px;           /* ย่อขนาดตัวอักษรในเมนู */
+    padding: 8px 10px;
+  }
+
+  .hamburger {
+    font-size: 24px;           /* ย่อขนาดไอคอน hamburger */
+    margin-right: 12px;
+  }
+
+  .top-bar {
+    display: none;             /* ซ่อนแถบด้านบนเหมือนเดิม */
+  }
+}

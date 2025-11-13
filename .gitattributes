@@ -1,0 +1,2 @@
+*.mov filter=lfs diff=lfs merge=lfs -text
+project/image/lib.MOV !text !filter !merge !diff

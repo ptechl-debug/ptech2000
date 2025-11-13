@@ -1,0 +1,188 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    font-family: 'Arial', sans-serif; 
+    
+}
+.contact-section {
+  width: 100%;
+  background-color: #f9f9f9;
+  border-radius: 0px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.contact-header {
+    text-align: center;        /* จัดให้อยู่กลางแนวนอน */
+    margin-bottom: 20px;       /* ช่องว่างด้านล่าง header */
+}
+
+.contact-header h1 {
+    font-size: 32px;           /* ขนาดตัวอักษร */
+    font-weight: 600;           /* ความหนาของตัวอักษร */
+    line-height: 1.2;           /* ความสูงบรรทัด */
+    color: #333;                /* สีตัวอักษร */
+    margin: 0;   
+    padding-top: 80px;   
+    display: inline-block; 
+    padding-bottom: 5px;             /* ลบ margin เริ่มต้น */
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* ซ้ายเล็ก ขวาใหญ่ */
+  gap: 30px;
+  align-items: center;
+  position: relative; /* เพิ่มตรงนี้ */
+}
+
+.contact-grid::before {
+  content: "";
+  position: absolute;
+  top: 10;
+  bottom: 0;
+  left: 40%; /* ตรงขอบคอลัมน์ซ้าย */
+  width: 2px;   /* ความหนาเส้น */
+  background-color: #ccc; /* สีเส้น */
+    height: 90%; 
+}
+
+.contact-info {
+  padding-left: 150px;   /* เว้นซ้าย 20px */
+  padding-right: 20px;  /* เว้นขวา 20px */
+  max-width: 600px;     /* กำหนดความกว้างสูงสุด */
+  margin: 0 auto;   
+      color: #ffffff;        /* จัดให้อยู่กลางจอ */
+}
+
+
+
+.contact-info i {
+  min-width: 30px;     /* กำหนดความกว้างเท่ากันสำหรับไอคอนทุกตัว */
+  text-align: center;
+}
+.contact-info p {
+  border-radius: 35px; /* กรอบมน */
+  padding: 15px 20px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* ระยะห่างระหว่างไอคอนกับข้อความ */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* เงาเบา ๆ */
+  transition: transform 0.2s ease, background-color 0.2s ease;
+    white-space: nowrap;
+}
+.contact-info p:nth-child(1) {
+  background-color: rgb(75, 212, 57); /* เขียวอ่อน สำหรับ LINE */
+}
+
+.contact-info p:nth-child(2) {
+  background-color: rgb(29, 79, 186); /* น้ำเงินอ่อน สำหรับ Facebook */
+}
+
+.contact-info p:nth-child(3) {
+  background-color: #fac16b; /* ส้มอ่อน สำหรับโทรศัพท์ */
+}
+
+
+.contact-info p:hover {
+  transform: translateY(-3px);
+  background-color: #949494; /* สีเปลี่ยนเล็กน้อยเวลา hover */
+}
+
+.contact-map p {
+    margin-top: 50px;
+}
+.contact-map img {
+  width: 70%;
+  height: 50%;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin-top: 50px;
+}
+
+.contact-map img:hover {
+  transform: scale(1.03);
+}
+.contact-header h1 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.contact-header h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: #D89216;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.0s ease;
+}
+
+/* ตอน active: เส้นค่อยๆ โผล่มาจากซ้ายไปขวา */
+.contact-header h1.active::after {
+  transform: scaleX(1);
+}
+
+/* ========== Responsive: แท็บเล็ตและมือถือ (≤ 768px) ========== */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr; /* ซ้อนคอลัมน์แทนวางข้างกัน */
+    gap: 20px;
+  }
+
+  .contact-grid::before {
+    display: none; /* ซ่อนเส้นแบ่งกลาง */
+  }
+
+  .contact-info {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .contact-info p {
+    font-size: 16px;
+    justify-content: center; /* จัดไอคอนกับข้อความให้อยู่ตรงกลาง */
+  }
+
+  .contact-map img {
+    width: 90%;
+    height: auto;
+    margin: 20px auto 40px;
+    display: block;
+  }
+
+  .contact-header h1 {
+    font-size: 26px;
+    padding-top: 50px;
+  }
+}
+
+/* ========== Responsive: มือถือเล็ก (≤ 425px) ========== */
+@media (max-width: 425px) {
+  .contact-header h1 {
+    font-size: 22px;
+    padding-top: 40px;
+  }
+
+  .contact-info p {
+    font-size: 14px;
+    padding: 12px 15px;
+  }
+
+  .contact-info {
+    padding: 10px;
+  }
+
+  .contact-map img {
+    width: 95%;
+    margin-top: 30px;
+  }
+}

@@ -1,0 +1,29 @@
+
+.page-title {
+    text-align: center;
+    margin: 40px 0 20px 0;
+    font-weight: bold;
+      
+}
+.page-title h1 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.page-title h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: #D89216;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.2s ease; /* ปรับช้า/เร็วได้ */
+}
+
+.page-title.active h1::after {
+  transform: scaleX(1);
+}

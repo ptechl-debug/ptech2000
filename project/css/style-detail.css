@@ -1,0 +1,434 @@
+/* ================= Reset เบื้องต้น ================= */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+
+}
+
+
+
+body {
+    opacity: 0; /* หน้าใหม่เริ่มจากโปร่งใส */
+    animation: fadeIn 0.4s forwards; /* fade-in หน้าใหม่ */
+    transition: opacity 0.4s ease; /* สำหรับ fade-out */
+}
+
+body.fade-out {
+    opacity: 0; /* fade-out หน้าเก่า */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ================= Container หลัก ================= */
+.content {
+    width: 100%;
+    margin: 0 auto;
+    background-color: rgba(191, 213, 229, 0.25);
+    padding-top: 70px;
+}
+
+/* ================= แถว 2 คอลัมน์ ================= */
+.row2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* ซ้าย 1 ขวา 1 */
+    gap: 50px;
+    align-items: stretch; /* ทำให้สูงเท่ากัน */
+    padding: 0 20px;
+}
+
+.row2 .column {
+    color: #333;
+}
+
+.row2 .left {
+    text-align: left;
+    padding-left: 100px;
+    padding-right: 20px;
+}
+
+.row2 .left h1 {
+    font-size: 26px;
+    margin-bottom: 15px;
+    color: #222;
+    font-family: 'IBM Plex Sans Thai', sans-serif
+}
+.row2 .right h1 {
+    font-size: 26px;
+    margin-bottom: 15px;
+    color: #222;
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+    gap: 10px;
+    
+}
+.row2 .left h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #222;
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+            gap: 5px;
+}
+.row2 .left h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #222;
+    font-family: 'IBM Plex Sans Thai', sans-serif ;
+    }
+
+.row2 .right h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #222;
+    font-family: 'IBM Plex Sans Thai', sans-serif
+}
+
+.row2 .left  p {
+    font-size: 16px;
+    line-height: 1.6;
+        font-weight: lighter;
+        margin-top: -10px;
+}
+.row2 .right  p {
+    font-size: 16px;
+    line-height: 1.6;
+        font-weight: lighter;
+                margin-top: -10px;
+}
+
+.row2 .column.right {
+    margin-top: 20px;
+    border-left: 2px solid #ccc;
+    padding-left: 20px;
+    padding-right: 150px;
+}
+
+.row2 .right .service-img:hover {
+    transform: scale(1.03);
+}
+
+/* ================= Accordion ================= */
+.accordion-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+
+    max-height: 0;       /* เริ่มต้นปิด */
+    overflow-y: auto;    /* เลื่อนขึ้นลง */
+    overflow-x: hidden;
+    padding: 0 20px;     /* padding ภายใน */
+    transition: max-height 0.3s ease; /* animation เปิด/ปิด */
+}
+
+
+
+/* เส้นใส้ด้านล่างสีน้ำเงิน และ pointer */
+/* เส้นใส้ด้านล่างสีน้ำเงิน และ pointer */
+.title.clickable {
+  border-bottom: 2px solid blue;
+  cursor: pointer;
+  display: inline-block;
+  padding-bottom: 3px;
+  transition: all 0.2s ease; /* สำหรับ animation */
+    color: #0000cc;   
+}
+
+/* เมื่อชี้เมาส์ (hover) */
+.title.clickable:hover {
+  transform: scale(1.05);          /* ขยายเล็กน้อย */
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.3); /* เพิ่มเงา */
+  border-bottom-color: darkblue;   /* เปลี่ยนสีเส้นใต้ */
+  color: #0000cc;                  /* เปลี่ยนสีตัวอักษร (ถ้าต้องการ) */
+}
+
+
+
+/* Popup overlay */
+.popup {
+  display: none; /* เริ่มปิดอยู่ */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* ปุ่มปิด */
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 36px;
+  color: white;
+  cursor: pointer;
+}
+.accordion {
+    background-color: #0000cc;
+    
+}
+.accordion-header span {
+    margin-left: 40px;
+    
+}
+/* ================= Accordion Subcontent ================= */
+.accordion-subcontent {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px; /* เว้นระยะระหว่างข้อความกับ GIF */
+}
+/* ================= GIF ================= */
+.gif-container {
+  flex: 1; /* ให้ GIF ยืดตามพื้นที่ที่กำหนด */
+  max-width: 460px; /* สูงสุด */
+}
+
+.gif-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  margin: 0; /* ไม่มีช่องว่างจาก margin */
+        box-shadow: 5px 5px 5px 5px rgba(148, 148, 148, 0.269);
+}
+
+.materials-section {
+  background-color: rgb(239, 239, 239);
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+}
+
+.materials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto;
+  gap: 20px;
+  justify-items: center;
+  width: 100%;
+  max-width: 1100px; /* ขนาดรวมสูงสุด */
+}
+
+/* ทำให้ item สุดท้ายกินเต็มแถว */
+.materials-grid .gif-container4 {
+  grid-column: 1 / span 2;
+  max-width: 500px;
+}
+
+/* ปรับแต่งกล่อง */
+.gif-container2,
+.gif-container3,
+.gif-container4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.gif-container2 img,
+.gif-container3 img {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+  margin-top: 10px;
+}
+.gif-container4 img {
+      width: 30%;
+  height: auto;
+  border-radius: 0;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+  margin-top: 10px;
+  }
+  
+
+/* ข้อความหัวข้อ */
+.materials-grid .title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+/* กล่องใหม่ gif-container6 */
+.gif-container6 {
+  display: flex;
+  flex-direction: column; /* เรียงบนลงล่าง */
+  align-items: center;    /* จัดตรงกลาง */
+  text-align: center;
+  gap: 10px;              /* เว้นระยะระหว่างข้อความกับรูป */
+  max-width: 500px;       /* จำกัดความกว้างของกล่อง */
+  margin: 0 auto;         /* จัดกลาง container */
+}
+
+/* ข้อความหัวข้อ */
+.gif-container6 .title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* ข้อความรายละเอียด */
+.gif-container6 p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* รูปภาพขนาดเล็ก */
+.gif-container6 img {
+  width: 80px;           /* ปรับขนาดตามต้องการ */
+  height: auto;
+  border-radius: 5px;
+  margin: 5px 0;
+    flex-direction: column;
+}
+.gif-container6 .images-row {
+  display: flex;
+  gap: 10px;       /* เว้นระยะระหว่างรูป */
+  justify-content: center;
+  flex-wrap: wrap; /* ถ้าเล็กลง จะขึ้นบรรทัดใหม่ */
+}
+
+.gif-container6 .images-row img {
+  width: 80px;
+  height: auto;
+  border-radius: 5px;
+}
+.gif-container7 img {
+  width: 100%;           /* ปรับขนาดตามต้องการ */
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  margin: 5px 0;
+}
+
+/* Responsive เล็ก ๆ */
+@media (max-width: 768px) {
+  .gif-container6 {
+    max-width: 90%;
+  }
+
+  .gif-container6 img {
+    width: 60px;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .materials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .materials-grid .gif-container4 {
+    grid-column: auto;
+  }
+}
+
+/* ================= ข้อความฝั่งขวา ================= */
+
+/* ================= ข้อความฝั่งขวา ================= */
+.text-container {
+  
+  width: 500px;
+
+  display: flex;
+    flex-direction: column; /* หัวข้อบน รายละเอียดล่าง */
+     backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background: #fff;
+  border: 3px solid rgba(149, 149, 149, 0.3);
+  padding: 8px 8px;
+  border-radius: 12px;
+text-shadow: 1px 1px 3px rgba(221, 221, 221, 0.5);
+    box-shadow: 5px 5px 5px rgba(1, 1, 1, 0.269);
+
+}
+.steps-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  justify-items: center; /* จัด item ตรงกลางแต่ไม่เต็ม column */
+  padding: 0;
+}
+
+.text-container2 {
+  width: 100%;        /* ขยายเต็ม column แต่ไม่เกิน max-width */
+  max-width: 300px;   /* จำกัดความกว้าง item */
+  display: flex;
+  flex-direction: column;
+  background-color: #fff; 
+  border: 2px solid rgba(149, 149, 149, 0.3);
+  padding: 4px;
+  border-radius: 8px;
+  font-size: 12px;
+  gap: 0px;
+  overflow: hidden;
+}
+
+
+.text-container2 p {
+  margin: 0;
+  padding: 0;
+}
+
+.text-container2 img {
+  width: 100%;
+  height: auto;
+  max-height: 100px;  /* จำกัดความสูง */
+  object-fit: contain;
+  margin-top: 2px;
+}
+
+
+.text-container p {
+    margin: 0 0 10px 0;
+    line-height: 1.5;
+}
+
+.text-container p.title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* ================= Responsive ================= */
+@media (max-width: 768px) {
+    .accordion-subcontent {
+        flex-direction: column; /* GIF บน ข้อความล่าง */
+        align-items: center;
+    }
+
+    .gif-container, .text-container {
+        flex: unset;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .row2 {
+        grid-template-columns: 1fr;
+    }
+
+    .row2 .left {
+        text-align: center;
+        padding-left: 0;
+    }
+
+    .row2 .column.right {
+        border-left: none;
+        padding-left: 0;
+    }
+}

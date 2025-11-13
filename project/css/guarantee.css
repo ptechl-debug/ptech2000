@@ -1,0 +1,129 @@
+/* ================= Reset เบื้องต้น ================= */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+
+}
+
+
+
+body {
+    opacity: 0; /* หน้าใหม่เริ่มจากโปร่งใส */
+    animation: fadeIn 0.4s forwards; /* fade-in หน้าใหม่ */
+    transition: opacity 0.4s ease; /* สำหรับ fade-out */
+}
+
+body.fade-out {
+    opacity: 0; /* fade-out หน้าเก่า */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+.content {
+    position: relative;
+    z-index: 2;
+    background-color: #ffffff;
+    transition: 
+    border-radius 0.4s ease,
+    box-shadow 0.4s ease,
+    transform 0.4s ease;
+}
+
+.grid-container {
+
+  max-width:1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+.left-content p {
+    font-size: 16px;
+    line-height: 1.6;
+        font-weight: lighter;
+}
+
+.grid-container .left-content {
+
+  border-bottom: 2px solid #ccc; /* สีเส้นขั้น */
+}
+
+.grid-container .left-content:last-child {
+  border-bottom: none; /* ไม่ต้องมีเส้นใต้แถวสุดท้าย */
+}
+
+/* ฝั่งซ้าย */
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* ซ้าย-ขวา */
+  align-items: center;            /* จัดให้อยู่กลางแนวตั้งทั้งคอลัมน์ */
+}
+.left-content {
+  text-align: left;
+  padding: 30px;
+  
+}
+
+
+.right-images {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+/* คอนเทนเนอร์แถวล่าง */
+.carousel-container {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.bottom-row {
+  display: grid;
+  grid-template-columns: repeat(3, 300px); /* กำหนดตรงกับ width รูป */
+  justify-content: center; /* จัดกลาง grid */
+  gap:10px; /* ช่องว่างระหว่างรูป 0 */
+}
+
+.bottom-row img {
+  width:300px;
+  height: 300px; /* กำหนดความสูงเท่ากัน */
+  object-fit: cover; /* ครอบพื้นที่โดยไม่บิดภาพ */
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.bottom-row1 {
+  display: grid;
+  grid-template-columns: 35% 35%; /* column เล็กลง */
+  gap: 20px;
+    justify-content: center; /* จัด grid ทั้งชุดให้อยู่กลาง container */
+  justify-items: center; 
+}
+
+.bottom-row1 img {
+  width: 100%; /* เต็ม column */
+  height: auto;
+    border-radius: 10px;
+      cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.bottom-row img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.bottom-row1 img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
