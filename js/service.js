@@ -48,12 +48,12 @@ document.querySelectorAll('.accordion').forEach(item => {
     });
 
   const images = [
-    "../project/image/servicepttech.jpg",
-    "../project/image/servicept2.jpg",
-    "../project/image/servicept3.jpg",
-    "../project/image/servicept4.jpg",
-    "../project/image/servicept5.jpg",
-    "../project/image/servicept6.jpg"
+    "../image/servicepttech.jpg",
+    "../image/servicept2.jpg",
+    "../image/servicept3.jpg",
+    "../image/servicept4.jpg",
+    "../image/servicept5.jpg",
+    "../image/servicept6.jpg"
   ];
 
   let currentIndex = 0;
