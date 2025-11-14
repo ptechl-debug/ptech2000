@@ -270,13 +270,13 @@
   border-bottom: 2px solid #176790;
 }
 
-/* ตัวอักษรแทนโลโก้ */
+/* 
 .logo-text {
-    display: none;              /* ซ่อนบน desktop เพราะมีโลโก้รูป */
+    display: none;             
     font-size: 24px;
     font-weight: bold;
     color: #0f4f7a;
-}
+} */
 
 
 /* Responsive มือถือ */
@@ -324,14 +324,6 @@
     z-index: 1001;
   }
 
-     .logo-text {
-        display: block;
-            position: absolute; 
-    top: 50%;              /* กึ่งกลางแนวตั้ง */
-    left: 50px;           /* ชิดขวา */
-    transform: translateY(-50%); /* กึ่งกลางแนวตั้งพอดี */
-    z-index: 1001;
-    }
   .my-navbar {
     position: fixed;  /* ติดบน */
     top: 0;
