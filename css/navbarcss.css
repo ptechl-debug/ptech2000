@@ -298,19 +298,6 @@
   color: #0f4f7a;
 }
 
-@media screen and (max-width: 1024px) {
-  /* ลดขนาด logo และ navbar */
-  .my-navbar .logo img {
-    height: 150px;
-    padding-left: 60px;
-    padding-top: 20px;
-  }
-
-  .my-navbar ul li a {
-    font-size: 16px;
-    padding: 8px 15px;
-  }
-}
 
 
 /* Mobile L/S/M (Hamburger) */
