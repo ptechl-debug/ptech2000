@@ -45,7 +45,7 @@
   </video>
     <div class="grid-content" >
       
-        <div class="left-carousel">
+        <div class="left-carousel scroll-slide-right">
                 <div class="carousel-wrapper">
                     <div class="carousel-images">
                  <img src="image/tab1.jpg" alt="รูป 1" class="active">
@@ -103,15 +103,15 @@
   </div>
 </div> -->
 
-         <div class="right-links liquid-glass">
+         <div class="right-links liquid-glass scroll-slide-up">
             <h1>เตาเผาศพปลอดมลพิษ PTECH</h1>
-            <ul>
+            <ul> 
                 <li><a href="detail2000D.html"><i class="fa-solid fa-arrow-right fa-sm"></i> ...รุ่น พี.เทค 2000D</a></li>
                 <li><a href="detail2000G.html"><i class="fa-solid fa-arrow-right fa-sm"></i>... รุ่น พี.เทค 2000G</a></li>
                 <li><a href="detail2000N.html"><i class="fa-solid fa-arrow-right fa-sm"></i>... รุ่น พี.เทค 2000N</a></li>
             </ul>
         </div>
-         <div class="right-text liquid-frame2">
+         <div class="right-text liquid-frame2 scroll-slide-up">
             <p>ในยุคที่สิ่งแวดล้อมและคุณภาพอากาศกลายเป็นประเด็นสำคัญของสังคม เตาเผาศพปลอดมลพิษจึงเป็นสิ่งจำเป็นอย่างยิ่ง เตาเผาศพของ พี.เทค 2000 ได้รับการออกแบบและพัฒนาอย่างต่อเนื่อง เพื่อแก้ไขปัญหามลพิษจากเตาเผาแบบเดิมอย่างแท้จริง
 เรามุ่งมั่นสร้างสรรค์เทคโนโลยีที่ช่วยลดผลกระทบต่อชุมชนและสิ่งแวดล้อม โดยทีมวิศวกรและช่างผู้เชี่ยวชาญที่มีประสบการณ์ยาวนานกว่า 20 ปี ตั้งแต่ปี 2542 จนถึงปัจจุบัน
 พี.เทค 2000 พร้อมเดินหน้าพัฒนาและยกระดับมาตรฐานเตาเผาศพไทย ให้สะอาด ปลอดภัย และเป็นมิตรต่อสิ่งแวดล้อมอย่างยั่งยืน</p>
@@ -121,7 +121,7 @@
       
 
 <div class="content2">
-    <div class="grid-content2">
+    <div class="grid-content2 scroll-fade">
         <div class="left_text_about ">
             <h1>รักษ์สิ่งแวดล้อม เพื่ออนาคตที่ยั่งยืน</h1>
             <p>
@@ -153,10 +153,24 @@
             </p>
         </div>
         
-  <div class="right-imag_about">
-    <!-- ใช้ background-image เป็นพื้นหลัง -->
-  </div>
+<div class="right-imag_about">
+  <video muted loop playsinline class="bg-video1" id="myVideo">
+    <source src="image/tapshow3.mp4" type="video/mp4" />
+  </video>
+  
+
+  <!-- ปุ่มเปิด/ปิดเสียง -->
+  <button class="sound-btn" id="soundBtn">🔇</button>
+</div>
+  <!-- <div class="popup" id="soundPopup">
+    <div class="popup-content">
+      <p>กดปุ่มเพื่อเล่นวิดีโอพร้อมเสียง</p>
+      <button id="allowSoundBtn">🎵 อนุญาต</button>
     </div>
+  </div> -->
+    </div>
+
+
 
 <div class="content3">
   
@@ -166,7 +180,7 @@
   </div>
 
   <!-- Grid ของสินค้า -->
-  <div class="grid-content3">
+  <div class="grid-content3 scroll-slide-right">
     <div class="card" onclick="scrollWithBounce('content')">
       <img src="image/product2.jpg" alt="สินค้า 1">
       <h3>เตาเผาศพปลอดมลพิษ</h3>
@@ -187,7 +201,7 @@
       <h3>สร้างเมรุ</h3>
     </a>
     
-    <div class="company-info">
+    <div class="company-info scroll-slide-left">
       <img src="image/ptechshow2.jpg" alt="สินค้า 4">
     <div class="company-text">
       <h2>ข้อมูลบริษัท</h2>
@@ -203,7 +217,7 @@
 
      </div>
 
-    <div class="content4">
+    <div class="content4" >
   
     <!-- หัวข้อบน -->
     <div class="product-title">
@@ -212,7 +226,7 @@
 
   <!-- Grid ของสินค้า -->
   <div class="grid-content4">
-       <div class="card4">
+       <div class="card4 scroll-slide-up">
 
 
       <img src="image/7.png" alt="สินค้า 1">
@@ -241,6 +255,7 @@
 
 <script src="js/index.js"></script>
 <script src="js/navbar.js"></script>
+<script src="js/ex.js"></script>
 
 
 <!-- <script src="js/fade.js"></script> -->
@@ -254,9 +269,35 @@
         
 
 
+<script>
+  const video = document.getElementById("myVideo");
+  const soundBtn = document.getElementById("soundBtn");
 
-        <script>
+  // ใช้ IntersectionObserver ตรวจว่าเลื่อนมาถึงวิดีโอหรือยัง
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        video.play(); // เริ่มเล่นเมื่อเห็น
+      } else {
+        video.pause(); // หยุดเมื่อไม่เห็น
+      }
+    });
+  }, { threshold: 0.5 }); // 50% ของวิดีโอโผล่
 
+  observer.observe(video);
+
+  // ปุ่มเปิด/ปิดเสียง
+  soundBtn.addEventListener("click", () => {
+    if (video.muted) {
+      video.muted = false;
+      soundBtn.textContent = "🔊"; // ไอคอนเสียงดัง
+    } else {
+      video.muted = true;
+      soundBtn.textContent = "🔇"; // ไอคอนปิดเสียง
+    }
+  });
+
+  // เลือกทุก element ที่ต้องการ fade-in
 
 
 

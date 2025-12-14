@@ -317,16 +317,88 @@ body {
 }
 
 
-
 .right-imag_about {
   flex: 1;
   height: 100vh;
-  background-image: url('../image/show2.jpg');
-  background-size: 50% auto;   /* ลดขนาดรูป 80% ของ div ความสูงปรับอัตโนมัติ */
-  background-position: right;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  
+  position: relative;  /* ต้อง relative เพื่อให้ video absolute ภายในนี้ */
+  overflow: hidden;    /* ตัดส่วนที่เกินออก */
+}
+
+.bg-video1 {
+  position: absolute;   /* อยู่ภายใน container */
+  top: 50%;
+  left: 50%;
+  width: 90%;           /* ปรับตามต้องการ */
+  height: 90%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;           /* ส่งไปด้านหลัง content */
+}
+/* เริ่มต้น: มองไม่เห็นและเลื่อนลงเล็กน้อย */
+.scroll-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* ตอนมองเห็น: ปรากฏแบบ smooth */
+.scroll-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* เริ่มต้น: มองไม่เห็นและอยู่ทางซ้าย */
+.scroll-slide-right {
+  opacity: 0;
+  transform: translateX(-50px); /* เริ่มจากซ้าย */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* ตอน element ปรากฏ */
+.scroll-slide-right.visible {
+  opacity: 1;
+  transform: translateX(0); /* กลับมาที่ตำแหน่งปกติ */
+}
+/* เริ่มต้น: มองไม่เห็นและอยู่ทางขวา */
+.scroll-slide-left {
+  opacity: 0;
+  transform: translateX(50px); /* เริ่มจากขวา 50px */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* ตอน element ปรากฏ */
+.scroll-slide-left.visible {
+  opacity: 1;
+  transform: translateX(0); /* กลับตำแหน่งปกติ */
+}
+
+/* เริ่มต้น: มองไม่เห็นและเลื่อนลงเล็กน้อย */
+.scroll-slide-up {
+  opacity: 0;
+  transform: translateY(30px); /* เริ่มจากด้านล่าง */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* ตอน element ปรากฏ */
+.scroll-slide-up.visible {
+  opacity: 1;
+  transform: translateY(0); /* กลับตำแหน่งปกติ */
+}
+
+/* ปุ่มเปิดเสียง */
+.sound-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  padding: 10px 12px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.sound-btn:hover {
+  background: rgba(0,0,0,0.7);
 }
 
 
@@ -475,7 +547,7 @@ body {
 
 .card4 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, auto)); /* ขนาดรูปพอดี */
+  grid-template-columns: repeat(auto-fit, minmax(80px, auto)); /* ขนาดรูปพอดี */
   justify-content: center; /* จัดกลางทั้งกริด */
   gap: 100px; /* ระยะห่างระหว่างรูป */
 
@@ -543,48 +615,114 @@ body {
 
 
 /* 🟢 Mobile */
-@media (min-width: 425px) and (max-width: 768px) {
+/* ---------------- Mobile XS (320px) ---------------- */
+@media (max-width: 320px) {
   html, body {
-    font-size: 12px;
-  }
-
-  .grid-content,
-  ß.grid-content1,
-  .grid-content2,
-  .grid-content3 {
-    grid-template-columns: 1fr;
+    font-size: 11px;
   }
 
   .hero {
-    height: 60vh;
+    height: 0vh;
     background-size: cover;
+  }
+
+  .grid-content,
+  .grid-content2,
+  .grid-content3 {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
   }
 
   .carousel-wrapper {
     aspect-ratio: 16 / 9;
   }
-  .right-links {
-    width: 50%;
-    max-width: 100px;          /* กำหนดขนาด carousel */
-    position: relative;
-    margin-bottom: 20px;
-}
 
   .left-carousel,
   .right-links,
   .left_text_about {
+    width: 100%;
     max-width: 100%;
-    margin: 0 auto 15px auto;
-    padding: 10px;
+    margin: 0 auto 10px auto;
+    padding: 5px;
   }
 
-  .right-imag_about {
-    background-attachment: scroll;
-    height: 280px;
+  .right-links h1,
+  .left_text_about h1,
+  .product-title h1 {
+    font-size: 1.2rem;
+  }
+
+  .product-title h4 {
+    font-size: 1rem;
   }
 
   .card img {
-    height: 180px;
+    height: 150px;
+  }
+
+  .card h3 {
+    font-size: 0.9rem;
+  }
+
+  .card p {
+    font-size: 0.75rem;
+  }
+
+  .right-imag_about {
+    height: 200px;
+  }
+
+  .company-info {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .company-info img {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* ---------------- Mobile S (375px) ---------------- */
+@media (min-width: 321px) and (max-width: 375px) {
+  html, body {
+    font-size: 12px;
+  }
+
+  .hero {
+    height: 55vh;
+  }
+
+  .grid-content,
+  .grid-content2,
+  .grid-content3 {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .left-carousel,
+  .right-links,
+  .left_text_about {
+    width: 100%;
+    max-width: 95%;
+    margin: 0 auto 12px auto;
+  }
+
+  .right-links h1,
+  .left_text_about h1,
+  .product-title h1 {
+    font-size: 1.3rem;
+  }
+
+  .product-title h4 {
+    font-size: 1.1rem;
+  }
+
+  .card img {
+    height: 160px;
   }
 
   .card h3 {
@@ -592,7 +730,43 @@ body {
   }
 
   .card p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  .right-imag_about {
+    height: 220px;
+  }
+
+  .company-info img {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* ---------------- Mobile M (425px) ---------------- */
+@media (min-width: 376px) and (max-width: 425px) {
+  html, body {
+    font-size: 13px;
+  }
+
+  .hero {
+    height: 60vh;
+  }
+
+  .grid-content,
+  .grid-content2,
+  .grid-content3 {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .left-carousel,
+  .right-links,
+  .left_text_about {
+    width: 100%;
+    max-width: 90%;
+    margin: 0 auto 15px auto;
   }
 
   .right-links h1,
@@ -605,14 +779,89 @@ body {
     font-size: 1.2rem;
   }
 
+  .card img {
+    height: 180px;
+  }
 
-  .company-info {
-    flex-direction: column;
-    text-align: center;
+  .card4 img {
+    height: 50px;
+  }
+
+  .card h3 {
+    font-size: 1.05rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+  }
+
+  .right-imag_about {
+    height: 250px;
   }
 
   .company-info img {
     width: 200px;
     height: 200px;
   }
+}
+
+/* ---------------- Tablet (768px) ---------------- */
+@media (min-width: 426px) and (max-width: 1024px) {
+  html, body {
+    font-size: 14px;
+  }
+
+  .hero {
+    height: 65vh;
+    background-size: cover;
+  }
+
+  .grid-content,
+  .grid-content2,
+  .grid-content3 {
+    grid-template-columns: 1fr 1fr; /* 2 คอลัมน์ */
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .left-carousel,
+  .right-links,
+  .left_text_about {
+    width: 100%;
+    max-width: 95%;
+    margin: 0 auto 15px auto;
+  }
+
+  .card img {
+    height: 50px;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  .right-imag_about {
+    height: 300px;
+  }
+
+  .company-info img {
+    width: 250px;
+    height: 250px;
+  }
+  .card4 {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 30px;
+    justify-content: center;
+  }
+
+  .card4 img {
+    width: 80px !important;
+    height: 80px !important;
+    object-fit: cover;
+  }
+
 }
