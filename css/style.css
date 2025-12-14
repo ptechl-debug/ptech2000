@@ -279,33 +279,36 @@ body {
 
 .content2 {
     position: relative;
-    z-index: 2;
+  z-index: 2; 
     transition: transform 0.3s ease;
     min-height: 100vh; 
       background: #f4fbff; /* โปร่ง */
   backdrop-filter: blur(6px);        /* ฟิล์มเบลอแบบ glass effect */
   border-radius: 8px;                /* โค้งน้อยๆ */
   box-shadow: none;  
+    margin-left: 0;
+    
   
 }
 
 .grid-content2 {
     display: grid;
     grid-template-columns: 1fr 1fr; /* ซ้าย-ขวา */
-    gap: 20px;
+    gap: 0px;
     align-items: start;
-    min-height: 80vh;
+    min-height: 70vh;
+      position: relative; /* ให้ child absolute อ้างอิง container นี้ */
     
 }
 
 .left_text_about {
-    width: 60%;
+    width: 65%;
     max-width: 700px;          /* กำหนดขนาด carousel */
     position: relative;
     margin: 5px auto 0 auto;
     margin-right: 50px;
       background: #ffffffda;
-  padding: 30px;
+  padding: 20px;
   border-radius: 20px;
     box-shadow: 10PX 10px 15px 10px rgba(1, 1, 1, 0.269);
   /* ขยับลงมา 40px จากบน */
@@ -313,27 +316,29 @@ body {
 
 .left_text_about h1{
     display: inline-block; 
+      z-index: 2;
     padding-bottom: 5px;  
 }
 
 
 .right-imag_about {
-  flex: 1;
-  height: 100vh;
-  position: relative;  /* ต้อง relative เพื่อให้ video absolute ภายในนี้ */
-  overflow: hidden;    /* ตัดส่วนที่เกินออก */
+   position: relative; /* video absolute ภายในนี้ */
+  width: 100%;
+  height: 100%;       /* ครอบเต็ม container */
+  overflow: hidden;
 }
 
+/* วิดีโอ absolute ภายใน container ขวา */
 .bg-video1 {
-  position: absolute;   /* อยู่ภายใน container */
-  top: 50%;
-  left: 50%;
-  width: 90%;           /* ปรับตามต้องการ */
-  height: 90%;
-  object-fit: cover;
-  transform: translate(-50%, -50%);
-  z-index: -1;           /* ส่งไปด้านหลัง content */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;        /* ครอบ container ขวา */
+  height: 100%;
+  object-fit: cover;   /* ครอบ container */
+  z-index: -1;
 }
+
 /* เริ่มต้น: มองไม่เห็นและเลื่อนลงเล็กน้อย */
 .scroll-fade {
   opacity: 0;
